@@ -1,0 +1,23 @@
+{
+  "project_version": "0.1.0",
+  "compiler": "almide 0.67.0 (dev, 974c00ea0)",
+  "rustc": "1.96.1 (31fca3adb 2026-06-26)",
+  "python": "3.12.14",
+  "tested_native_binary": "Linux x86_64",
+  "binary_sha256": "3481142edc22905993405b17ec7e34f15e382618ca621e565422e5f942e53d82",
+  "binary_in_source_archive": false,
+  "verification": {
+    "almide_typecheck": "passed",
+    "native_build": "passed",
+    "python_compile": "passed",
+    "unit_acceptance_tests": 49,
+    "test_result": "passed",
+    "demo": "passed; regenerated JSON and text outputs match recorded examples byte-for-byte",
+    "adversarial_recheck_probes": "passed: replacement context, source rollback, invalid-duplicate poisoning, noncausal reclassification"
+  },
+  "live_network_testing": "not_performed",
+  "source_authentication": "not_implemented",
+  "publication": "source_only_repository",
+  "verified_on": "2026-10-07",
+  "repository": "https://github.com/Aid-On/aidon-exposure-agent"
+}

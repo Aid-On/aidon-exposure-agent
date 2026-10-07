@@ -1,0 +1,136 @@
+// Aid-On Exposure Agent: deterministic, offline, prerequisite-based rule engine.
+// The Python boundary validates provenance, times, budgets, scope and integrity.
+// This executable consumes ONLY that normalized interchange; it has no network,
+// shell, credential, change-application, or LLM capability.
+import json
+import fs
+import process
+
+fn text(v: Value, k: String) -> String = json.get_string(v, k) ?? ""
+fn items(v: Value, k: String) -> List[Value] = json.get_array(v, k) ?? []
+fn flag(v: Value, k: String) -> Bool = json.get_bool(v, k) ?? false
+fn obj(pairs: List[(String, Value)]) -> Value = value.object(pairs)
+fn s(v: String) -> Value = value.str(v)
+
+// Only public visibility admits public evidence. Internal transitions need
+// customer configuration evidence, regardless of what public text claims.
+fn permitted_source(predicate: String, source: String) -> Bool =
+  source == "customer_config" or (predicate == "public_visibility" and source == "public_observation")
+
+fn prerequisite(evidence: List[Value], subject: String, predicate: String) -> Value = {
+  let matching = evidence |> list.filter((e) => text(e, "subject") == subject and text(e, "predicate") == predicate)
+  let accepted = matching |> list.filter((e) => text(e, "eligibility") == "eligible" and permitted_source(predicate, text(e, "source_type")))
+  let positive = accepted |> list.filter((e) => flag(e, "value"))
+  let negative = accepted |> list.filter((e) => not flag(e, "value"))
+  let status = if not list.is_empty(positive) and not list.is_empty(negative) then "conflicted"
+    else if not list.is_empty(positive) then "supported"
+    else if not list.is_empty(negative) then "contradicted"
+    else "unknown"
+  obj([
+    ("subject", s(subject)), ("predicate", s(predicate)), ("status", s(status)),
+    ("evidence_ids", value.array(accepted |> list.map((e) => s(text(e, "id"))))),
+    ("considered_evidence_ids", value.array(matching |> list.map((e) => s(text(e, "id"))))),
+    ("reason", s(if status == "unknown" then "No eligible evidence from an allowed source; missing is not false"
+      else if status == "conflicted" then "Current allowed evidence disagrees; no majority vote"
+      else "Supported by current normalized evidence; fixture assertion is not runtime verification")),
+  ])
+}
+
+fn structural(subject: String, predicate: String, holds: Bool, known: Bool) -> Value = obj([
+  ("subject", s(subject)), ("predicate", s(predicate)),
+  ("status", s(if not known then "unknown" else if holds then "supported" else "contradicted")),
+  ("evidence_ids", value.array([])), ("considered_evidence_ids", value.array([])),
+  ("reason", s("Structural compatibility from the approved fixture inventory, not observed execution")),
+])
+
+fn find_node(nodes: List[Value], id: String) -> Value =
+  list.first(nodes |> list.filter((n) => text(n, "id") == id)) ?? value.null()
+
+fn assess_path(evidence: List[Value], app: Value, connector: Value, data: Value, call: Value, read: Value) -> Value = {
+  let app_id = text(app, "id")
+  let connector_id = text(connector, "id")
+  let data_id = text(data, "id")
+  let call_id = text(call, "id")
+  let read_id = text(read, "id")
+  let principal = text(call, "principal_id")
+  let deployment = text(app, "deployment_id")
+  let tenant = text(app, "tenant_id")
+  let principal_known = principal != "" and text(read, "principal_id") != ""
+  let context_known = deployment != "" and tenant != ""
+  let compatible = context_known and text(connector, "deployment_id") == deployment
+    and text(call, "deployment_id") == deployment and text(read, "deployment_id") == deployment
+    and text(connector, "tenant_id") == tenant and text(data, "tenant_id") == tenant
+  let checks = [
+    structural(app_id, "context_binding", compatible, context_known),
+    structural(call_id, "principal_binding", principal == text(read, "principal_id"), principal_known),
+    structural(call_id, "edge_confirmed", text(call, "state") == "confirmed", text(call, "state") == "confirmed"),
+    structural(read_id, "edge_confirmed", text(read, "state") == "confirmed", text(read, "state") == "confirmed"),
+    prerequisite(evidence, app_id, "public_visibility"),
+    prerequisite(evidence, app_id, "unauthenticated_invocation"),
+    prerequisite(evidence, app_id, "orphaned"),
+    prerequisite(evidence, call_id, "active"),
+    prerequisite(evidence, call_id, "user_input_drives_connector"),
+    prerequisite(evidence, read_id, "active"),
+    prerequisite(evidence, read_id, "excessive_privilege"),
+    prerequisite(evidence, data_id, "sensitive"),
+  ]
+  let all_supported = list.all(checks, (c) => text(c, "status") == "supported")
+  let has_uncertainty = list.any(checks, (c) => text(c, "status") == "unknown" or text(c, "status") == "conflicted")
+  let blocked = list.any(checks, (c) => text(c, "status") == "contradicted")
+  let status = if all_supported then "configuration_supported_candidate"
+    else if has_uncertainty then "not_established"
+    else if blocked then "blocked_in_snapshot" else "not_established"
+  obj([
+    ("rule_id", s("orphan-ai-connector-sensitive-v1")),
+    ("path", value.array([s(app_id), s(connector_id), s(data_id)])),
+    ("edges", value.array([s(call_id), s(read_id)])),
+    ("tenant_id", s(tenant)), ("status", s(status)),
+    ("prerequisites", value.array(checks)),
+    ("business_impact", s(text(data, "business_impact"))),
+    ("exploitability", s("not_tested")),
+    ("runtime_reachability", s("not_tested")),
+  ])
+}
+
+fn assess(snapshot: Value) -> Value = {
+  let nodes = items(snapshot, "nodes")
+  let edges = items(snapshot, "edges")
+  let evidence = items(snapshot, "evidence")
+  var candidates: List[Value] = []
+  let apps = nodes |> list.filter((n) => text(n, "kind") == "ai_app" and flag(n, "authorized"))
+  for app in apps {
+    let calls = edges |> list.filter((e) => text(e, "kind") == "invokes" and text(e, "from") == text(app, "id"))
+    for call in calls {
+      let connector = find_node(nodes, text(call, "to"))
+      if text(connector, "kind") == "connector" and flag(connector, "authorized") then {
+        let reads = edges |> list.filter((e) => text(e, "kind") == "can_read" and text(e, "from") == text(connector, "id"))
+        for read in reads {
+          let data = find_node(nodes, text(read, "to"))
+          if text(data, "kind") == "business_asset" and flag(data, "authorized") then {
+            candidates = candidates + [assess_path(evidence, app, connector, data, call, read)]
+          } else ()
+        }
+      } else ()
+    }
+  }
+  obj([
+    ("engine", s("almide-prerequisite-engine")),
+    ("engine_version", s("0.1.0")),
+    ("findings", value.array(candidates)),
+  ])
+}
+
+effect fn main() -> Unit = {
+  let args = process.args()
+  match list.get(args, 1) {
+    some(path) => {
+      let source = fs.read_text(path)!
+      let snapshot = json.parse(source)!
+      println(json.stringify(assess(snapshot)))
+    },
+    none => {
+      println("Usage: aidon-engine NORMALIZED_SNAPSHOT.json (internal protocol; use python -m aidon_exposure)")
+      process.exit(2)
+    },
+  }
+}

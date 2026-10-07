@@ -1,0 +1,106 @@
+{
+  "version": "0.1.0",
+  "content": "source, fixtures, documentation and recorded demo/test results; no compiler or binary",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "e4ce798a5004227d2af9db7f3875d28a0fae6566669816b6385b25fb9a8c60e3"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8c99fabb3d47ea68e239b0985987df5fbe27d34736979acf7307ebb330193b43"
+    },
+    {
+      "path": "aidon_exposure/__init__.py",
+      "sha256": "1e28c25d939518693b546b2371a54ad307d2ab3295b3e88e691dfa18fc16e10c"
+    },
+    {
+      "path": "aidon_exposure/__main__.py",
+      "sha256": "14db71e0ed4ba930d7fe280203fb4cca140f9d3ce27db673066cb86d4499316f"
+    },
+    {
+      "path": "aidon_exposure/agent.py",
+      "sha256": "3470d412dd5d4b30bd0bbdcfae05ad5ae8889d365dfc35c769a37cf7c74e561f"
+    },
+    {
+      "path": "aidon_exposure/boundary.py",
+      "sha256": "eea3fa38bd24be17844785d6b2fa25d66961f1bfcf0ccee46fd59867c747355a"
+    },
+    {
+      "path": "almide.toml",
+      "sha256": "fd62dff44e093156b00d6a2c51fac6cefd16cf0262a2f89141a7e73d4cf14f78"
+    },
+    {
+      "path": "build.sh",
+      "sha256": "14f339b637ca9b05e6a57191e55590ff5592c4630bfe1c12e073909aac17a003"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "c3d32dbac448e9e0f3c4aabe44881fa9ab3862a18a788278dbd3c2cee2e9515d"
+    },
+    {
+      "path": "docs/THREAT_MODEL.md",
+      "sha256": "ecca79dfe2585b28eb27c85f2417b5a2243cd067d1a417b08b3c61814fcc27a5"
+    },
+    {
+      "path": "examples/demo/after.json",
+      "sha256": "3263325596039ddd3d75968b191f645f9a28562f3b8a6bb67439c7abdeff3eb0"
+    },
+    {
+      "path": "examples/demo/after.txt",
+      "sha256": "3055d6d46fa7d06e2cf21fc091d10d3ed00c75ea61c32dc205be794ee165e51b"
+    },
+    {
+      "path": "examples/demo/before.json",
+      "sha256": "22052d7608d303e4eb7a52b8f1fb9bcefb0f9c94dd87215f6570f9c5d66ac929"
+    },
+    {
+      "path": "examples/demo/before.txt",
+      "sha256": "7b077ccdf694546ed63a4aea11f4ae7267945b551d4d1606d78a39528d044b47"
+    },
+    {
+      "path": "examples/demo/recheck.json",
+      "sha256": "b3e827a70c3cb09c6674d58914b2e32828c6008372668986e69bc16bb32775d2"
+    },
+    {
+      "path": "examples/demo/summary.json",
+      "sha256": "b3e827a70c3cb09c6674d58914b2e32828c6008372668986e69bc16bb32775d2"
+    },
+    {
+      "path": "examples/test-results.txt",
+      "sha256": "81029ab489fb409ef3d898fff280827c3b80932c72d2a6f69a261515b57980ab"
+    },
+    {
+      "path": "examples/verification.json",
+      "sha256": "7a89fcee4af765b8bcfc4c174c2104dadb4a55bdcf728fea1502fbf6e719fdf5"
+    },
+    {
+      "path": "fixtures/after.json",
+      "sha256": "08b431230081c2e9166d622fafec054077301df89695df3e942253f248eb5a07"
+    },
+    {
+      "path": "fixtures/before.json",
+      "sha256": "f8fd3e5af1111f82a0ca9ea9b9f608c7ca27a68364126e52ba7ab3a2e657804c"
+    },
+    {
+      "path": "fixtures/ground_truth.json",
+      "sha256": "3c4208085d6fa42e4fed85b28e33aff5162864f91935b16301351190d5d79ae4"
+    },
+    {
+      "path": "fixtures/manifest.json",
+      "sha256": "113bb881bee552f063f98c5162b027da14cd127c3fe7977bc7b61d0635110f09"
+    },
+    {
+      "path": "src/main.almd",
+      "sha256": "89b874a568ef3eae24d3ba8ba6e745a98b3aa8c623eb7288bd394ca6fc0d3778"
+    },
+    {
+      "path": "tests/test_agent.py",
+      "sha256": "3606e6433df55ec33d80705e05112402f9fb9a71a94199fa88b8ca2165962465"
+    },
+    {
+      "path": "tools/make_fixtures.py",
+      "sha256": "eb276d4d2fec4536230c4bcd846640a605e8ea6400336eaa3e01fa50194c3bc1"
+    }
+  ]
+}

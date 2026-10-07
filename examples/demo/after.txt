@@ -1,0 +1,75 @@
+Aid-On Exposure Agent 0.1.0 | offline fixture report
+
+Snapshot synthetic-after revision 2
+Assessed at 2026-10-07T10:30:00Z
+Candidates describe configuration support. Exploitability and live reachability were NOT tested.
+
+aidon-9c71d599edf1a437a96a | not_established | priority=investigate
+  app:public-only -> connector:public-only -> data:customer-records
+  supported     app:public-only:context_binding evidence=none
+  supported     call:public-only:principal_binding evidence=none
+  supported     call:public-only:edge_confirmed evidence=none
+  supported     read:public-only:edge_confirmed evidence=none
+  supported     app:public-only:public_visibility evidence=ev:public-only:public
+  unknown       app:public-only:unauthenticated_invocation evidence=none
+  unknown       app:public-only:orphaned evidence=none
+  unknown       call:public-only:active evidence=none
+  unknown       call:public-only:user_input_drives_connector evidence=none
+  unknown       read:public-only:active evidence=none
+  unknown       read:public-only:excessive_privilege evidence=none
+  supported     data:customer-records:sensitive evidence=ev:sensitive
+  Remediation: proposal only; human approval and a new snapshot required
+
+aidon-e02e5b2e7ad1223f9acd | not_established | priority=investigate
+  app:stale -> connector:stale -> data:customer-records
+  supported     app:stale:context_binding evidence=none
+  supported     call:stale:principal_binding evidence=none
+  supported     call:stale:edge_confirmed evidence=none
+  supported     read:stale:edge_confirmed evidence=none
+  supported     app:stale:public_visibility evidence=ev:stale:public
+  unknown       app:stale:unauthenticated_invocation evidence=none
+  unknown       app:stale:orphaned evidence=none
+  unknown       call:stale:active evidence=none
+  unknown       call:stale:user_input_drives_connector evidence=none
+  unknown       read:stale:active evidence=none
+  unknown       read:stale:excessive_privilege evidence=none
+  supported     data:customer-records:sensitive evidence=ev:sensitive
+  Remediation: proposal only; human approval and a new snapshot required
+
+aidon-257630fd8d41e1b3e994 | blocked_in_snapshot | priority=review_snapshot
+  app:poc -> connector:poc -> data:customer-records
+  supported     app:poc:context_binding evidence=none
+  supported     call:poc:principal_binding evidence=none
+  supported     call:poc:edge_confirmed evidence=none
+  supported     read:poc:edge_confirmed evidence=none
+  supported     app:poc:public_visibility evidence=ev:poc:public
+  contradicted  app:poc:unauthenticated_invocation evidence=ev:poc:auth-enabled-v2
+  supported     app:poc:orphaned evidence=ev:app:poc:orphaned
+  supported     call:poc:active evidence=ev:call:poc:active
+  supported     call:poc:user_input_drives_connector evidence=ev:call:poc:user_input_drives_connector
+  supported     read:poc:active evidence=ev:read:poc:active
+  supported     read:poc:excessive_privilege evidence=ev:read:poc:excessive_privilege
+  supported     data:customer-records:sensitive evidence=ev:sensitive
+  Remediation: proposal only; human approval and a new snapshot required
+
+aidon-ce5b50f4aa2d9aefc0ea | blocked_in_snapshot | priority=review_snapshot
+  app:inactive -> connector:inactive -> data:customer-records
+  supported     app:inactive:context_binding evidence=none
+  supported     call:inactive:principal_binding evidence=none
+  supported     call:inactive:edge_confirmed evidence=none
+  supported     read:inactive:edge_confirmed evidence=none
+  supported     app:inactive:public_visibility evidence=ev:inactive:public
+  supported     app:inactive:unauthenticated_invocation evidence=ev:app:inactive:unauthenticated_invocation
+  supported     app:inactive:orphaned evidence=ev:app:inactive:orphaned
+  contradicted  call:inactive:active evidence=ev:call:inactive:active
+  supported     call:inactive:user_input_drives_connector evidence=ev:call:inactive:user_input_drives_connector
+  supported     read:inactive:active evidence=ev:read:inactive:active
+  supported     read:inactive:excessive_privilege evidence=ev:read:inactive:excessive_privilege
+  supported     data:customer-records:sensitive evidence=ev:sensitive
+  Remediation: proposal only; human approval and a new snapshot required
+
+EXCLUDED app:unknown-owner: Ownership not verified in operator-approved manifest inventory
+EXCLUDED app:vendor: Hostname or CNAME crosses scope; scope does not follow aliases
+
+Trust: unsigned hashes are integrity checks, not proof of source authenticity.
+No network, credentials, exploit or mutation tools exist in this prototype.

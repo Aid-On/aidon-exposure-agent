@@ -1,0 +1,46 @@
+{
+  "mode": "fixture_only",
+  "results": [
+    {
+      "finding_id": "aidon-257630fd8d41e1b3e994",
+      "state": "closed_in_fixture",
+      "reason": "Later allowed-source evidence contradicts a causal entry/transition condition of this exact path",
+      "closing_evidence_ids": [
+        "ev:poc:auth-enabled-v2"
+      ],
+      "reclassification_evidence_ids": [],
+      "before_revision": 1,
+      "after_revision": 2,
+      "runtime_verification": "not_performed"
+    }
+  ],
+  "limitation": "Closure applies only to this path and supplied snapshots; no universal or live security guarantee",
+  "comparison": {
+    "task": "Identify entry assets with a supported synthetic orphan-AI-to-sensitive-asset path",
+    "unit": "entry_asset",
+    "oracle": "Hand-authored synthetic labels for configuration-supported candidate chains at the reference clock; not actual exploit ground truth",
+    "baseline_definition": "Inventory + known-vulnerability list; flag an entry only when both public visibility and a known vulnerability are present",
+    "baseline": {
+      "predicted_entry_assets": [
+        "app:decoy"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "prerequisite_engine": {
+      "predicted_entry_assets": [
+        "app:poc"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "warning": "Small hand-authored fixture for reproducibility, not a representative EASM benchmark or product superiority claim"
+  },
+  "clock": "Fixed synthetic clocks, not current-world observations"
+}

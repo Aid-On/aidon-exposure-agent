@@ -1,0 +1,10 @@
+{
+  "description": "Hand-authored synthetic labels for configuration-supported candidate chains at the reference clock; not actual exploit ground truth",
+  "labels": {
+    "app:poc": true,
+    "app:public-only": false,
+    "app:stale": false,
+    "app:inactive": false,
+    "app:decoy": false
+  }
+}

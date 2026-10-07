@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "mode": "fixture_only",
+  "organization_id": "synthetic-org",
+  "tenant_id": "synthetic-tenant",
+  "approval_ref": "fixture://operator-approval/scope-v1",
+  "allowed_operations": [
+    "fixture_read"
+  ],
+  "revoked": false,
+  "valid_from": "2026-10-07T00:00:00Z",
+  "valid_until": "2026-10-08T00:00:00Z",
+  "hosts": [
+    {
+      "name": "aidon.example",
+      "include_subdomains": true
+    }
+  ],
+  "excluded_hosts": [
+    "excluded.aidon.example"
+  ],
+  "ips": [],
+  "asset_ids": [
+    "app:poc",
+    "connector:poc",
+    "app:public-only",
+    "connector:public-only",
+    "app:stale",
+    "connector:stale",
+    "app:inactive",
+    "connector:inactive",
+    "app:unknown-owner",
+    "connector:unknown-owner",
+    "app:vendor",
+    "connector:vendor",
+    "data:customer-records",
+    "app:decoy"
+  ],
+  "ownership_records": {
+    "app:poc": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "connector:poc": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "app:public-only": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "connector:public-only": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "app:stale": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "connector:stale": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "app:inactive": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "connector:inactive": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "app:unknown-owner": {
+      "status": "unknown",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "connector:unknown-owner": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "app:vendor": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "connector:vendor": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "data:customer-records": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    },
+    "app:decoy": {
+      "status": "verified",
+      "organization_id": "synthetic-org",
+      "verification_ref": "fixture://operator-approval/ownership-v1"
+    }
+  },
+  "sources": [
+    {
+      "id": "public-a",
+      "type": "public_observation",
+      "tenant_id": "synthetic-tenant",
+      "max_age_seconds": 86400
+    },
+    {
+      "id": "config-a",
+      "type": "customer_config",
+      "tenant_id": "synthetic-tenant",
+      "max_age_seconds": 86400
+    },
+    {
+      "id": "config-b",
+      "type": "customer_config",
+      "tenant_id": "synthetic-tenant",
+      "max_age_seconds": 86400
+    }
+  ]
+}

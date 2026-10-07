@@ -1,0 +1,54 @@
+test_budget_is_bounded (test_agent.InspectionTests.test_budget_is_bounded) ... ok
+test_cli_unknown_command_fails (test_agent.InspectionTests.test_cli_unknown_command_fails) ... ok
+test_cname_and_shared_ip_do_not_expand_scope (test_agent.InspectionTests.test_cname_and_shared_ip_do_not_expand_scope) ... ok
+test_disappearance_is_not_remediation (test_agent.InspectionTests.test_disappearance_is_not_remediation) ... ok
+test_duplicate_ids_and_dangling_edges_fail_closed (test_agent.InspectionTests.test_duplicate_ids_and_dangling_edges_fail_closed) ... ok
+test_duplicate_json_keys_rejected (test_agent.InspectionTests.test_duplicate_json_keys_rejected) ... ok
+test_duplicates_are_not_votes (test_agent.InspectionTests.test_duplicates_are_not_votes) ... ok
+test_end_to_end_candidate (test_agent.InspectionTests.test_end_to_end_candidate) ... ok
+test_engine_timeout_is_inconclusive_failure_not_safe_report (test_agent.InspectionTests.test_engine_timeout_is_inconclusive_failure_not_safe_report) ... ok
+test_evidence_from_another_deployment_cannot_transfer (test_agent.InspectionTests.test_evidence_from_another_deployment_cannot_transfer) ... ok
+test_evidence_from_another_principal_cannot_transfer (test_agent.InspectionTests.test_evidence_from_another_principal_cannot_transfer) ... ok
+test_evidence_revision_time_rollback_rejected (test_agent.InspectionTests.test_evidence_revision_time_rollback_rejected) ... ok
+test_expired_new_revision_does_not_revive_old_support (test_agent.InspectionTests.test_expired_new_revision_does_not_revive_old_support) ... ok
+test_expired_scope_fails_closed (test_agent.InspectionTests.test_expired_scope_fails_closed) ... ok
+test_fixture_metrics_are_explicit_and_reproducible (test_agent.InspectionTests.test_fixture_metrics_are_explicit_and_reproducible) ... ok
+test_future_and_invalid_time_rejected (test_agent.InspectionTests.test_future_and_invalid_time_rejected) ... ok
+test_inactive_edge_blocks (test_agent.InspectionTests.test_inactive_edge_blocks) ... ok
+test_incompatible_deployments_rejected (test_agent.InspectionTests.test_incompatible_deployments_rejected) ... ok
+test_incompatible_principals_rejected (test_agent.InspectionTests.test_incompatible_principals_rejected) ... ok
+test_independent_current_conflict_retained (test_agent.InspectionTests.test_independent_current_conflict_retained) ... ok
+test_inferred_edge_does_not_count_as_confirmed (test_agent.InspectionTests.test_inferred_edge_does_not_count_as_confirmed) ... ok
+test_injection_text_is_inert_and_no_external_tools (test_agent.InspectionTests.test_injection_text_is_inert_and_no_external_tools) ... ok
+test_integrity_tamper_rejected_as_support (test_agent.InspectionTests.test_integrity_tamper_rejected_as_support) ... ok
+test_invalid_duplicate_cannot_hide_valid_negative (test_agent.InspectionTests.test_invalid_duplicate_cannot_hide_valid_negative) ... ok
+test_lifecycle_change_reclassifies_but_does_not_close_access (test_agent.InspectionTests.test_lifecycle_change_reclassifies_but_does_not_close_access) ... ok
+test_missing_data_is_not_closed (test_agent.InspectionTests.test_missing_data_is_not_closed) ... ok
+test_missing_transition_cannot_be_invented (test_agent.InspectionTests.test_missing_transition_cannot_be_invented) ... ok
+test_no_extra_operation_can_be_authorized (test_agent.InspectionTests.test_no_extra_operation_can_be_authorized) ... ok
+test_old_negative_and_new_snapshot_does_not_close (test_agent.InspectionTests.test_old_negative_and_new_snapshot_does_not_close) ... ok
+test_ownership_spoof_does_not_override_manifest (test_agent.InspectionTests.test_ownership_spoof_does_not_override_manifest) ... ok
+test_private_and_cidr_ip_grants_rejected (test_agent.InspectionTests.test_private_and_cidr_ip_grants_rejected) ... ok
+test_public_only_does_not_establish_internal_permissions (test_agent.InspectionTests.test_public_only_does_not_establish_internal_permissions) ... ok
+test_public_visibility_conflict_with_private_config (test_agent.InspectionTests.test_public_visibility_conflict_with_private_config) ... ok
+test_recheck_requires_later_revision_and_closes_exact_path (test_agent.InspectionTests.test_recheck_requires_later_revision_and_closes_exact_path) ... ok
+test_replaced_supporting_source_is_not_silent_closure (test_agent.InspectionTests.test_replaced_supporting_source_is_not_silent_closure) ... ok
+test_replacement_deployment_does_not_close_original (test_agent.InspectionTests.test_replacement_deployment_does_not_close_original) ... ok
+test_revoked_scope_fails_closed (test_agent.InspectionTests.test_revoked_scope_fails_closed) ... ok
+test_same_snapshot_and_proposal_do_not_close (test_agent.InspectionTests.test_same_snapshot_and_proposal_do_not_close) ... ok
+test_same_source_revision_cannot_change_value_across_snapshots (test_agent.InspectionTests.test_same_source_revision_cannot_change_value_across_snapshots) ... ok
+test_same_stream_new_revision_supersedes_without_erasure (test_agent.InspectionTests.test_same_stream_new_revision_supersedes_without_erasure) ... ok
+test_scope_exact_subdomain_and_exclusion_rules (test_agent.InspectionTests.test_scope_exact_subdomain_and_exclusion_rules) ... ok
+test_scope_lookalike_and_unknown_owner_excluded (test_agent.InspectionTests.test_scope_lookalike_and_unknown_owner_excluded) ... ok
+test_sensitivity_change_reclassifies_but_does_not_close_access (test_agent.InspectionTests.test_sensitivity_change_reclassifies_but_does_not_close_access) ... ok
+test_source_revision_rollback_across_snapshots (test_agent.InspectionTests.test_source_revision_rollback_across_snapshots) ... ok
+test_stale_evidence_is_unknown_not_false (test_agent.InspectionTests.test_stale_evidence_is_unknown_not_false) ... ok
+test_unchanged_later_snapshot_remains_supported (test_agent.InspectionTests.test_unchanged_later_snapshot_remains_supported) ... ok
+test_unknown_principal_is_not_false (test_agent.InspectionTests.test_unknown_principal_is_not_false) ... ok
+test_unknown_source_rejected (test_agent.InspectionTests.test_unknown_source_rejected) ... ok
+test_url_and_ambiguous_host_rejected (test_agent.InspectionTests.test_url_and_ambiguous_host_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 0.436s
+
+OK
