@@ -5,12 +5,13 @@
 import json
 import fs
 import process
+import env
 
-fn text(v: Value, k: String) -> String = json.get_string(v, k) ?? ""
-fn items(v: Value, k: String) -> List[Value] = json.get_array(v, k) ?? []
-fn flag(v: Value, k: String) -> Bool = json.get_bool(v, k) ?? false
+fn text(v: Value, k: String) -> String = value.get_string(v, k) ?? ""
+fn items(v: Value, k: String) -> List[Value] = value.get_array(v, k) ?? []
+fn flag(v: Value, k: String) -> Bool = value.get_bool(v, k) ?? false
 fn obj(pairs: List[(String, Value)]) -> Value = value.object(pairs)
-fn s(v: String) -> Value = value.str(v)
+fn s(v: String) -> Value = value.string(v)
 
 // Only public visibility admits public evidence. Internal transitions need
 // customer configuration evidence, regardless of what public text claims.
@@ -121,8 +122,8 @@ fn assess(snapshot: Value) -> Value = {
 }
 
 effect fn main() -> Unit = {
-  let args = process.args()
-  match list.get(args, 1) {
+  let args = env.args()
+  match list.get(args, 0) {
     some(path) => {
       let source = fs.read_text(path)!
       let snapshot = json.parse(source)!
